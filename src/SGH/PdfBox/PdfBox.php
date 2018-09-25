@@ -17,6 +17,10 @@ class PdfBox implements PdfConverter
      */
     protected $_pathToPdfBox = 'pdfbox-app-1.6.0.jar';
     /**
+     * @var string
+     */
+    protected $_pathToJava = 'java';
+    /**
      * @var Options
      */
     protected $_options;
@@ -134,6 +138,7 @@ class PdfBox implements PdfConverter
     protected function execute(Command $command)
     {
         $command->setJar($this->getPathToPdfBox());
+        $command->setJava($this->getPathToJava());
         $command->setOptions($this->_options);
         exec((string) $command . ' 2>&1', $stdErr, $exitCode);
         if ($command->getPdfFileIsTemp()) {
@@ -176,6 +181,26 @@ class PdfBox implements PdfConverter
     public function setPathToPdfBox($_pathToPdfBox)
     {
         $this->_pathToPdfBox = $_pathToPdfBox;
+    }
+
+    /**
+     * Return full path to Java
+     *
+     * @return string $_pathToJava
+     */
+    public function getPathToJava()
+    {
+        return $this->_pathToJava;
+    }
+
+    /**
+     * Set full path to Java
+     *
+     * @param string $_pathToJava
+     */
+    public function setPathToJava($_pathToJava)
+    {
+        $this->_pathToJava = $_pathToJava;
     }
 
 }

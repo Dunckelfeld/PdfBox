@@ -17,6 +17,10 @@ class Command
      */
     protected $_jar = 'pdfbox.jar';
     /**
+     * @var string
+     */
+    protected $_java = 'java';
+    /**
      * @var \SGH\PdfBox\Options
      */
     protected $_options;
@@ -60,8 +64,8 @@ class Command
     public function __toString()
     {
         return preg_replace('/\s+/', ' ', sprintf(
-            'java -jar %s ExtractText %s %s %s %s',
-            escapeshellarg($this->_jar), $this->getBasicOptions(), $this->getUserOptions(),
+            '%s -jar %s ExtractText %s %s %s %s',
+            escapeshellarg($this->_java),escapeshellarg($this->_jar), $this->getBasicOptions(), $this->getUserOptions(),
             escapeshellarg($this->_pdfFile), escapeshellarg($this->_textFile)
         ));
     }
@@ -116,6 +120,15 @@ class Command
     public function getJar()
     {
         return $this->_jar;
+    }
+    /**
+     * Return path to java executable file
+     *
+     * @return string path to java executable
+     */
+    public function getJava()
+    {
+        return $this->_java;
     }
     /**
      * Return advanced options
@@ -189,6 +202,18 @@ class Command
     public function setJar($jar)
     {
         $this->_jar = $jar;
+        return $this;
+    }
+
+    /**
+     * Set path to Java executable
+     *
+     * @param string $java full path to java executable file
+     * @return \SGH\PdfBox\Command
+     */
+    public function setJava($java)
+    {
+        $this->_java = $java;
         return $this;
     }
 

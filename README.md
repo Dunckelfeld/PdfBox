@@ -56,5 +56,10 @@ $converter->getOptions()
     ->setSort(true);
 ```
 
+Set path to java executable (if not in path):
+```php
+$converter->setPathToJava("/path/to/java/bin/java");
+````
+
 ## PHPUnit tests
 To run the unit tests, change the environment variable `PDFBOX_JAR` to the full path of your PdfBox JAR file. See *phpunit.xml.dist*.
